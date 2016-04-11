@@ -12,6 +12,8 @@
 
 class Ambiguity
 {
+	
+	
 public:
 
 	void TCARPre(double* obsP,double* obsL,int sysid, double* NarrAmb);
