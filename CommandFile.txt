@@ -1,0 +1,182 @@
+%Instruction
+%This is Command File
+%The indicator of "%" stands for the comment line
+%The indicator of "#" stands for the command line
+%The order of system is G R E S C
+%Then,every single system command block will follow
+%Every command block begins with "#BEGINSET I", and ends with "#ENDSET I" "I" stands for system, see sysid
+%SYSID 				the ID of system 1=G,2=R,3=E,4=S,5=C
+%MASKELE			double	mask elevation of double difference, unit: degree
+%CODTYPE			int[3]	the type of code uesd, 1=ues,0=no ues ,order: GPS L1 L2 L5,BDS B1 B2 B3,GLO L1 L2 L3,  Format:I3X3I3X3I3
+%CODFLAG			int			the type number of code uesd. 1,2,3 is uncombined,4,5,6 is combined
+%CODCOEF			int[][]	3 X 3, every number accords the CODFLAG
+%PHSTYPE			int[3]	the type of phase uesd   Format:I3X3I3X3I3
+%PHSFLAG			int			the type number of code uesd. 1,2,3 is uncombined,4,5,6 is combined
+%PHSCOEF			int[][]	3 X 3, every number accords the CODFLAG
+%MODE					int			the solution mode 0=static,1=kinematic
+%IONOFLAG			int			0=comb;	1=IF;		2=float;	3=fixed; 4=reserved
+%TROPFLAG			int			0=fix;	1=est;	2=reserved;
+%AMBFLAG			int			0=float;	1=fix;	2=par;
+%PARMASKELE		double	if PARMASKELE=2, this parameter is of ues, unit:degree
+%SIGMA				double	empirical  unit:meter
+%CORD block   if the base or rover cords is given, the indicator is 1  F14.4X1
+%INPUTFILE		the file paths are  set  eg. "#CLK 1" the CLK file, 1 is the number of file
+%Next block...
+%More detail, refer to the example below
+%NOTE:
+%The data required in command could not exist in observation.In this condition, the program will change the command
+%End Instruction
+
+#INPUTFILE 1
+	#EPHEMERIS   1
+	E:\Data\SHCORS\070(0311)\SHXZ\0005070E00.14P
+	#SP3   0
+	#CLK   0
+	#BASE   1
+	E:\Data\SHCORS\070(0311)\SHCH\0001070E00.14O
+	#ROVER   1
+	E:\Data\SHCORS\070(0311)\SHXZ\0005070E00.14O
+#ENDINPUT
+
+#OUTPUTFILE
+		outBDS.txt
+#ENDOUTPUT
+
+#CORD
+	#BASECORD 1
+	 -2844699.7132   4658062.3870   3289138.2271
+	#ROVERCORD 1
+	 -2845889.6667   4666123.1082   3276891.6785
+#ENDCORD
+
+#SYSNUM   2
+
+
+#BEGINSET 1
+	#SYSID
+	1
+	#MASKELE
+	8.0
+	#CODTYPE
+	1     1     0
+	#CODFLAG
+	5
+	#CODCOEF
+	1     0     0
+	0     1     0
+	0     0     0
+	#PHSTYPE
+	1     1     0
+	#PHSFLAG
+	5
+	#PHSCOEF
+	1     0     0
+	0     1     0
+	0     0     0
+	#MODE
+	1
+	#IONOFLAG
+	2
+	#TROPFLAG
+	1
+	#TROPSTEP
+	1
+	#AMBFLAG
+	1
+	#THRESRATIO
+	1.5
+	#PARMASKELE
+	40.0
+	#SIGMACOD
+	0.3
+	#SIGMAPHS
+	0.003
+	#WEIGHTMODE
+	3
+#ENDSET 1
+
+#BEGINSET 2
+	#SYSID
+	2
+	#MASKELE
+	10.0
+	#CODTYPE
+	1     1     0
+	#CODFLAG
+	5
+	#CODCOEF
+	1     0     0
+	0     1     0
+	0     0     0
+	#PHSTYPE
+	1     1     0
+	#PHSFLAG
+	5
+	#PHSCOEF
+	1     0     0
+	0     1     0
+	0     0     0
+	#MODE
+	1
+	#IONOFLAG
+	1
+	#TROPFLAG
+	0
+	#TROPSTEP
+	1
+	#AMBFLAG
+	1
+	#THRESRATIO
+	2.0
+	#PARMASKELE
+	40.0
+	#SIGMACOD
+	0.3
+	#SIGMAPHS
+	0.003
+	#WEIGHTMODE
+	3
+#ENDSET 2
+
+#BEGINSET 5
+	#SYSID
+	5
+	#MASKELE
+	8.0
+	#CODTYPE
+	1     1     0
+	#CODFLAG
+	5
+	#CODCOEF
+	1     0     0
+	0     1     0
+	0     0     0
+	#PHSTYPE
+	1     1     0
+	#PHSFLAG
+	4
+	#PHSCOEF
+	1     0     0
+	0     1     0
+	0     0     0
+	#MODE
+	1
+	#IONOFLAG
+	1
+	#TROPFLAG
+	0
+	#TROPSTEP
+	1
+	#AMBFLAG
+	1
+	#THRESRATIO
+	1.5
+	#PARMASKELE
+	40.0
+	#SIGMACOD
+	0.3
+	#SIGMAPHS
+	0.003
+	#WEIGHTMODE
+	3
+#ENDSET 5
